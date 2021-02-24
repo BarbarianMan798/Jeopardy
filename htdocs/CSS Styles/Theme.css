@@ -1,0 +1,54 @@
+@font-face{
+    font-family: "korinna";
+    src="../Fonts/korinna-bt/korinan.ttf";
+}
+@font-face{
+    font-family: 'gyparody';
+    src: url("../Fonts/gyparody/gyparody hv.ttf");
+}
+@font-face{
+    font-family: "Helvetica-Bold";
+    src: url("../Fonts/Helvetica-Font/helvetica-compressed-5871d14b6903a.otf");
+}
+body{
+    background-color: #010a78;
+    color: #d7a04b;
+}
+.title{
+    font-size: 35px;
+    text-align: center;
+    text-shadow: 5px 5px 0 #000000;
+    font-weight: 900;
+    font-family: 'gyparody';
+}
+.text{
+    font-family:"Helvetica-Bold";
+    font-weight: 900;
+}
+table, tr, th, td{
+    border: 5px solid black;
+    border-collapse: collapse;
+    font-family:"Helvetica-Bold";
+    font-weight: bolder;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+}
+table, th{
+    outline-style: solid;
+    outline-color: #000000;
+    outline-width: 4px;
+    text-transform: uppercase;
+    font-weight: 250;
+    text-shadow: 2px 2px 0 #000000;
+}
+.thicc{
+    font-family:"Helvetica-Bold";
+    border: none;
+    background-color: #010a78;
+    font-size: 45px;
+    color: #d7a04b;
+    text-shadow: 5px 5px 0 #000000;
+    text-align: center;
+    font-weight: bolder;
+}
