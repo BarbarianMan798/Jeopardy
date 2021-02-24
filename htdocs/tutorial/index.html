@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Edited with github</title>
+	<script>
+		window.onload = function(){
+            var testElement;
+            console.log(testElement = document.getElementById("create"));
+            testElement.innerHTML =  "nope";
+            menu();
+        }
+        function hideElement(id) {
+            console.log("hiding " + id);
+            document.getElementById(String(id)).style.display = "none";
+        }
+        function showElement(id) {
+            console.log("showing " + id);
+            document.getElementById(String(id)).style.display = "block";
+        }
+        function menu() {
+            hideElement("pages");
+            showElement("menu");
+            showElement("backToHome");
+            console.log("menu");
+        }
+        function select(page) {
+            console.log(page);
+            hideElement("create");
+            hideElement("edit");
+            hideElement("play");
+            hideElement("troubleshoot");
+            hideElement("feedback");
+            hideElement("menu");
+            hideElement("backToHome");
+            if (String(page) == "menu") {
+                hideElement("pages");
+                showElement("backToHome");
+            }
+            else {
+                showElement("pages");
+                showElement("backToMenu");
+            }
+            showElement(String(page));
+        }
+	</script>
+	<link rel="stylesheet" href="../styles/theme.css">
+	<style>
+	</style>
+</head>
+
+<body>
+	<h1 class="title">How to play</h1>
+	<div id="menu">
+		<button type="button" onclick='select("create")'>How to create a Jeopardy game</button>
+        <button type="button" onclick='select("edit")'>How to edit a Jeopardy game</button>
+        <button type="button" onclick='select("play")'>How to play a Jeopardy game that you have created</button>
+        <button type="button" onclick='select("troubleshoot")'>Common Problems</button>
+        <button type="button" onclick='select("feedback")'>Feedback</button>
+    </div>
+    <div id="pages">
+        <div id="create" display="none">
+            <h2>How to create a Jeopardy game</h2>
+        </div>
+        <div id="edit">
+            <h2>How to edit a Jeopardy game</h2>
+        </div>
+        <div id="play">
+            <h2>How to play a Jeopardy game that you have created</h2>
+        </div>
+        <div id="troubleshoot">
+            <h2>Common Problems</h2>
+        </div>
+        <div id="feedback">
+            <h2>Feedback</h2>
+        </div>
+        <button type="button" id="backToMenu" onclick='select("menu")'>Back</button>
+    </div>
+    <a href="../" id="backToHome"><button class="thicc" type="button">Back</button></a>
+</body>
+
+</html>

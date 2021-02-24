@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jeopardy Game Editor</title>
+    <script src="../scripts/editor.js"></script>
+
+    <link rel="stylesheet" href="../styles/theme.css">
+
+    <style>
+        .catLabel {
+            text-align: left;
+        }
+        h2, button.thicc, label[for="1"]{
+            font-size: 2em;
+        }
+        .label{
+            font-size: 1.4em;
+        }
+        button.QA, input.QA, p.QA{
+            background-color: #00000000;
+            border: none;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="fileUpload">
+        <br>
+        <button class="animated thicc" type="button" id="newFile" onclick="editFile(true)">New File</button>
+        <br><br>
+        <p class="QA"> OR</p>
+        <br>
+        <button type="button" class="thicc" onclick='document.getElementById("uploadFile").click()'>Upload a file</button>
+        <br><br>
+        <input style="display: none" class="animated QA" type="file" accept=".txt" id="uploadFile">
+        <br><br><br><br><br><br>
+        <button type="button" class="thicc" style="font-size: 1.6em" onclick='window.open("../")'>Back to Jeopardy</button>
+    </div>
+
+    <div id="editFile" style="display: none">
+        <h1 class="title" id="editingTitle"></h1>
+        <form id="editForm">
+
+            <label class="text label" for="1" class="text">Title</label>
+            <input type="text" id="1"><br><br><br>
+
+            <!--<label class="text label" for="timerAll">Set time for all:</label>
+            <input type="text" id="timerAll"><br>-->
+
+            <h2 class="text">Categories</h2>
+            <input type="text" id="2" class="catEdit"><br>
+
+            <input type="text" id="3" class="catEdit"><br>
+
+            <input type="text" id="4" class="catEdit"><br>
+
+            <input type="text" id="5" class="catEdit"><br>
+
+            <input type="text" id="6" class="catEdit"><br>
+
+            <input type="text" id="7" class="catEdit"><br>
+
+            <h2 class="text catLabel" id="catLabel1"></h2>
+            <label class="text label" for="8">100 Point Question</label>
+            <textarea onchange="saved = false;" id="8"></textarea><br>
+
+            <!--<label class="text label" for="timer11">Time in seconds(optional)</label>
+            <input type="text" id="timer11"><br>-->
+
+
+            <label class="text label" for="9">100 Point Answer</label>
+            <textarea onchange="saved = false;" id="9"></textarea><br>
+
+            <label class="text label" for="10">200 Point Question</label>
+            <textarea onchange="saved = false;" id="10"></textarea><br>
+
+            <!--<label class="text label" for="timer12">Time in seconds(optional)</label>
+            <input type="text" id="timer12"><br>-->
+
+            <label class="text label" for="11">200 Point Answer</label>
+            <textarea onchange="saved = false;" id="11"></textarea><br>
+
+            <label class="text label" for="12">300 Point Question</label>
+            <textarea onchange="saved = false;" id="12"></textarea><br>
+
+            <!--<label class="text label" for="timer13">Time in seconds(optional)</label>
+            <input type="text" id="timer13"><br>-->
+
+            <label class="text label" for="13">300 Point Answer</label>
+            <textarea onchange="saved = false;" id="13"></textarea><br>
+
+            <label class="text label" for="14">400 Point Question</label>
+            <textarea onchange="saved = false;" id="14"></textarea><br>
+
+            <!--<label class="text label" for="timer14">Time in seconds(optional)</label>
+            <input type="text" id="timer14"><br>-->
+
+            <label class="text label" for="15">400 Point Answer</label>
+            <textarea onchange="saved = false;" id="15"></textarea><br>
+
+            <label class="text label" for="16">500 Point Question</label>
+            <textarea onchange="saved = false;" id="16"></textarea><br>
+
+            <!--<label class="text label" for="timer15">Time in seconds(optional)</label>
+            <input type="text" id="timer15"><br>-->
+
+            <label class="text label" for="17">500 Point Answer</label>
+            <textarea onchange="saved = false;" id="17"></textarea><br>
+
+            <h2 class="text catLabel" id="catLabel2"></h2>
+            <label class="text label" for="18">100 Point Question</label>
+            <textarea onchange="saved = false;" id="18"></textarea><br>
+
+            <!--<label class="text label" for="timer21">Time in seconds(optional)</label>
+            <input type="text" id="timer21"><br>-->
+
+            <label class="text label" for="19">100 Point Answer</label>
+            <textarea onchange="saved = false;" id="19"></textarea><br>
+
+            <label class="text label" for="20">200 Point Question</label>
+            <textarea onchange="saved = false;" id="20"></textarea><br>
+
+            <!--<label class="text label" for="timer22">Time in seconds(optional)</label>
+            <input type="text" id="timer22"><br>-->
+
+            <label class="text label" for="21">200 Point Answer</label>
+            <textarea onchange="saved = false;" id="21"></textarea><br>
+
+            <label class="text label" for="22">300 Point Question</label>
+            <textarea onchange="saved = false;" id="22"></textarea><br>
+
+            <!--<label class="text label" for="timer23">Time in seconds(optional)</label>
+            <input type="text" id="timer23"><br>-->
+
+            <label class="text label" for="23">300 Point Answer</label>
+            <textarea onchange="saved = false;" id="23"></textarea><br>
+
+            <label class="text label" for="24">400 Point Question</label>
+            <textarea onchange="saved = false;" id="24"></textarea><br>
+
+            <!--<label class="text label" for="timer24">Time in seconds(optional)</label>
+            <input type="text" id="timer24"><br>-->
+
+            <label class="text label" for="25">400 Point Answer</label>
+            <textarea onchange="saved = false;" id="25"></textarea><br>
+
+            <label class="text label" for="26">500 Point Question</label>
+            <textarea onchange="saved = false;" id="26"></textarea><br>
+
+            <!--<label class="text label" for="timer25">Time in seconds(optional)</label>
+            <input type="text" id="timer25"><br>-->
+
+            <label class="text label" for="27">500 Point Answer</label>
+            <textarea onchange="saved = false;" id="27"></textarea><br>
+
+            <h2 class="text catLabel" id="catLabel3"></h2>
+            <label class="text label" for="28">100 Point Question</label>
+            <textarea onchange="saved = false;" id="28"></textarea><br>
+
+            <!--<label class="text label" for="timer31">Time in seconds(optional)</label>
+            <input type="text" id="timer31"><br>-->
+
+            <label class="text label" for="29">100 Point Answer</label>
+            <textarea onchange="saved = false;" id="29"></textarea><br>
+
+            <label class="text label" for="30">200 Point Question</label>
+            <textarea onchange="saved = false;" id="30"></textarea><br>
+
+            <!--<label class="text label" for="timer32">Time in seconds(optional)</label>
+            <input type="text" id="timer32"><br>-->
+
+            <label class="text label" for="31">200 Point Answer</label>
+            <textarea onchange="saved = false;" id="31"></textarea><br>
+
+            <label class="text label" for="32">300 Point Question</label>
+            <textarea onchange="saved = false;" id="32"></textarea><br>
+
+            <!--<label class="text label" for="timer33">Time in seconds(optional)</label>
+            <input type="text" id="timer33"><br>-->
+
+            <label class="text label" for="33">300 Point Answer</label>
+            <textarea onchange="saved = false;" id="33"></textarea><br>
+
+            <label class="text label" for="34">400 Point Question</label>
+            <textarea onchange="saved = false;" id="34"></textarea><br>
+
+            <!--<label class="text label" for="timer34">Time in seconds(optional)</label>
+            <input type="text" id="timer34"><br>-->
+
+            <label class="text label" for="35">400 Point Answer</label>
+            <textarea onchange="saved = false;" id="35"></textarea><br>
+
+            <label class="text label" for="36">500 Point Question</label>
+            <textarea onchange="saved = false;" id="36"></textarea><br>
+
+            <!--<label class="text label" for="timer35">Time in seconds(optional)</label>
+            <input type="text" id="timer35"><br>-->
+
+            <label class="text label" for="37">500 Point Answer</label>
+            <textarea onchange="saved = false;" id="37"></textarea><br>
+
+            <h2 class="text catLabel" id="catLabel4"></h2>
+            <label class="text label" for="38">100 Point Question</label>
+            <textarea onchange="saved = false;" id="38"></textarea><br>
+
+            <!--<label class="text label" for="timer41">Time in seconds(optional)</label>
+            <input type="text" id="timer41"><br>-->
+
+            <label class="text label" for="39">100 Point Answer</label>
+            <textarea onchange="saved = false;" id="39"></textarea><br>
+
+            <label class="text label" for="40">200 Point Question</label>
+            <textarea onchange="saved = false;" id="40"></textarea><br>
+
+            <!--<label class="text label" for="timer42">Time in seconds(optional)</label>
+            <input type="text" id="timer42"><br>-->
+
+            <label class="text label" for="41">200 Point Answer</label>
+            <textarea onchange="saved = false;" id="41"></textarea><br>
+
+            <label class="text label" for="42">300 Point Question</label>
+            <textarea onchange="saved = false;" id="42"></textarea><br>
+
+            <!--<label class="text label" for="timer43">Time in seconds(optional)</label>
+            <input type="text" id="timer43"><br>-->
+
+            <label class="text label" for="43">300 Point Answer</label>
+            <textarea onchange="saved = false;" id="43"></textarea><br>
+
+            <label class="text label" for="44">400 Point Question</label>
+            <textarea onchange="saved = false;" id="44"></textarea><br>
+
+            <!--<label class="text label" for="timer44">Time in seconds(optional)</label>
+            <input type="text" id="timer44"><br>-->
+
+            <label class="text label" for="45">400 Point Answer</label>
+            <textarea onchange="saved = false;" id="45"></textarea><br>
+
+            <label class="text label" for="46">500 Point Question</label>
+            <textarea onchange="saved = false;" id="46"></textarea><br>
+
+            <!--<label class="text label" for="timer45">Time in seconds(optional)</label>
+            <input type="text" id="timer45"><br>-->
+
+            <label class="text label" for="47">500 Point Answer</label>
+            <textarea onchange="saved = false;" id="47"></textarea><br>
+
+            <h2 class="text catLabel" id="catLabel5"></h2>
+            <label class="text label" for="48">100 Point Question</label>
+            <textarea onchange="saved = false;" id="48"></textarea><br>
+
+            <!--<label class="text label" for="timer51">Time in seconds(optional)</label>
+            <input type="text" id="timer51"><br>-->
+
+            <label class="text label" for="49">100 Point Answer</label>
+            <textarea onchange="saved = false;" id="49"></textarea><br>
+
+            <label class="text label" for="50">200 Point Question</label>
+            <textarea onchange="saved = false;" id="50"></textarea><br>
+
+            <!--<label class="text label" for="timer52">Time in seconds(optional)</label>
+            <input type="text" id="timer52"><br>-->
+
+            <label class="text label" for="51">200 Point Answer</label>
+            <textarea onchange="saved = false;" id="51"></textarea><br>
+
+            <label class="text label" for="52">300 Point Question</label>
+            <textarea onchange="saved = false;" id="52"></textarea><br>
+
+            <!--<label class="text label" for="timer53">Time in seconds(optional)</label>
+            <input type="text" id="timer53"><br>-->
+
+            <label class="text label" for="53">300 Point Answer</label>
+            <textarea onchange="saved = false;" id="53"></textarea><br>
+
+            <label class="text label" for="54">400 Point Question</label>
+            <textarea onchange="saved = false;" id="54"></textarea><br>
+
+            <!--<label class="text label" for="timer54">Time in seconds(optional)</label>
+            <input type="text" id="timer54"><br>-->
+
+            <label class="text label" for="55">400 Point Answer</label>
+            <textarea onchange="saved = false;" id="55"></textarea><br>
+
+            <label class="text label" for="56">500 Point Question</label>
+            <textarea onchange="saved = false;" id="56"></textarea><br>
+
+            <!--<label class="text label" for="timer55">Time in seconds(optional)</label>
+            <input type="text" id="timer55"><br>-->
+
+            <label class="text label" for="57">500 Point Answer</label>
+            <textarea onchange="saved = false;" id="57"></textarea><br>
+
+            <h2 class="text catLabel" id="catLabel6"></h2>
+            <label class="text label" for="58">100 Point Question</label>
+            <textarea onchange="saved = false;" id="58"></textarea><br>
+
+            <!--<label class="text label" for="timer61">Time in seconds(optional)</label>
+            <input type="text" id="timer61"><br>-->
+
+            <label class="text label" for="59">100 Point Answer</label>
+            <textarea onchange="saved = false;" id="59"></textarea><br>
+
+            <label class="text label" for="60">200 Point Question</label>
+            <textarea onchange="saved = false;" id="60"></textarea><br>
+
+            <!--<label class="text label" for="timer62">Time in seconds(optional)</label>
+            <input type="text" id="timer62"><br>-->
+
+            <label class="text label" for="61">200 Point Answer</label>
+            <textarea onchange="saved = false;" id="61"></textarea><br>
+
+            <label class="text label" for="62">300 Point Question</label>
+            <textarea onchange="saved = false;" id="62"></textarea><br>
+
+            <!--<label class="text label" for="timer63">Time in seconds(optional)</label>
+            <input type="text" id="timer63"><br>-->
+
+            <label class="text label" for="63">300 Point Answer</label>
+            <textarea onchange="saved = false;" id="63"></textarea><br>
+
+            <label class="text label" for="64">400 Point Question</label>
+            <textarea onchange="saved = false;" id="64"></textarea><br>
+
+            <!--<label class="text label" for="timer64">Time in seconds(optional)</label>
+            <input type="text" id="timer64"><br>-->
+
+            <label class="text label" for="65">400 Point Answer</label>
+            <textarea onchange="saved = false;" id="65"></textarea><br>
+
+            <label class="text label" for="66">500 Point Question</label>
+            <textarea onchange="saved = false;" id="66"></textarea><br>
+
+            <!--<label class="text label" for="timer65">Time in seconds(optional)</label>
+            <input type="text" id="timer65"><br>-->
+
+            <label class="text label" for="67">500 Point Answer</label>
+            <textarea onchange="saved = false;" id="67"></textarea><br>
+
+            <br>
+            <button type="button" class="thicc animated" onclick="downloadFile()">Download</button>
+            <br>
+            <button type="button" class="thicc animated" onclick='location = location'>Back</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

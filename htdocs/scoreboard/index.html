@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Jeopardy Scoreboard</title>
+	<script src="../scripts/scoreboard.js">
+	</script>
+	<link rel="stylesheet" href="../styles/theme.css">
+	<style>
+        table{
+            border-style: none;
+        }
+        td{
+            border-style: solid;
+            border-width: 0.3vw
+        }
+	</style>
+</head>
+
+<body>
+	<h1 id="title" class="title">Score</h1>
+	<button onclick="document.getElementById('test').innerHTML = 'button press'">Test</button>
+    <h1 id="test"></h1>
+    <table id="scoreTable"></table>
+    <button style="display: none" type="button" class="thicc" id="addPoints"></button>
+    <button style="display: none" type="button" class="thicc" id="subtractPoints"></button>
+</body>
+
+</html>

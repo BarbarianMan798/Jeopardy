@@ -1,27 +1,38 @@
 var newLines = new Array();
 var lines;
 var categoryLabel;
-function get(by, id, item){
+var saved = true;
+function get(by, id, item) {
     item = Number(item || 0);
     id = String(id);
     by = String(by);
-    switch(by){
+    switch (by) {
         case "id":
             return document.getElementById(id);
             break;
         case "tag":
-            return document.getElementsByTagName(id)[item];
+            if (item >= 0) {
+                return document.getElementsByTagName(id)[item];
+            }
+            else {
+                return document.getElementsByTagName(id);
+            }
             break;
         case "class":
-            if (item >= 0){
+            if (item >= 0) {
                 return document.getElementsByClassName(id)[item];
             }
-            else{
+            else {
                 return document.getElementsByClassName(id);
             }
             break;
         case "style":
-            return document.querySelectorAll(id)[item];
+            if (item >= 0) {
+                return document.querySelectorAll(id)[item];
+            }
+            else {
+                return document.querySelectorAll(id);
+            }
             break;
     }
 }
@@ -38,27 +49,33 @@ function timer(seconds, element) {
 function editFile(newFile) {
     console.log("edit file");
     hideElement("fileUpload");
-    if (newFile == false){
+    document.getElementById("uploadFile").value = "";
+    if (newFile == false) {
         document.getElementById("editingTitle").innerHTML = "Editing \"" + String(lines[0]) + "\"";
     }
     for (var i = 1; i <= 6; i++) {
         categoryLabel = document.getElementById("catLabel" + String(i));
         console.log(categoryLabel);
-        if (newFile == false && typeof lines[i] !== "undefined"){
+        if (newFile == false && typeof lines[i] !== "undefined") {
             categoryLabel.innerHTML = String(lines[i]);
             console.log("assigning default values");
-            for (var a = 0; a < 67; a++){
-                if (typeof lines[a] !== "undefined"){
+            for (var a = 0; a < 7; a++){
+                if (typeof lines[a] !== "undefined") {
                     document.getElementById(String(a + 1)).setAttribute("value", lines[a]);
                 }
             }
-            for (var cat = 1; cat <= 6; cat++){
-                for (var val = 1; val <= 5; val++){
-                    document.getElementById("timer" + String(cat) + String(val)).value = lines[67 + ((cat - 1) * 5) + val];
+            for (var a = 7; a < 67; a++) {
+                if (typeof lines[a] !== "undefined") {
+                    document.getElementById(String(a + 1)).innerHTML = lines[a];
                 }
             }
+            /*for (var cat = 1; cat <= 6; cat++) {
+                for (var val = 1; val <= 5; val++) {
+                    document.getElementById("timer" + String(cat) + String(val)).value = lines[67 + ((cat - 1) * 5) + val];
+                }
+            }*/
         }
-        else{
+        else {
             document.getElementById("editingTitle").innerHTML = "Editing <i>\"Unnamed\"</i>";
             categoryLabel.innerHTML = "Category " + String(i);
         }
@@ -73,6 +90,7 @@ function showElement(ID) {
     document.getElementById(ID).style.display = "block";
 }
 function downloadFile() {
+    saved = true;
     for (var i = 1; i <= 67; i++) {
         console.log(i);
         newLines[i - 1] = document.getElementById(String(i)).value;
@@ -81,47 +99,41 @@ function downloadFile() {
     var fileName = String(newLines[0]);
     var fileText = String(newLines[0]);
     for (var i = 1; i < newLines.length; i++) {
-        fileText = fileText + "\n" + newLines[i];
+        fileText = fileText + "\n" + newLines[i].replace(/\n/g, "|||");
     }
-    for (var cat = 1; cat <= 6; cat++) {
+    /*for (var cat = 1; cat <= 6; cat++) {
         for (var val = 1; val <= 5; val++) {
             fileText = fileText + "\n" + String(document.getElementById("timer" + String(cat) + String(val)).value);
         }
-    }
+    }*/
     console.log(fileText);
     var gameFile = new Blob([fileText], { type: "text/plain" });
     console.log(gameFile);
     var fileLink = document.createElement("a");
-    //document.body.appendToChild(fileLink);
     console.log(fileLink);
     fileLink.setAttribute("id", "downloadLink");
     fileLink.setAttribute("href", window.URL.createObjectURL(gameFile));
     fileLink.setAttribute("download", fileName);
     fileLink.click();
     fileLink.remove();
-    hideElement("editFile");
-    showElement("fileUpload");
 }
-function updateCategories(id){
+function updateCategories(id) {
+    saved = false;
     var catTitle = document.getElementById(id);
     var catLabel = document.getElementById("catLabel" + String(id - 1));
-    if (catTitle.value == ""){
+    if (catTitle.value == "") {
         catLabel.innerHTML = "<i>Unnamed Category</i>";
         console.log("unnamed categories");
     }
-    else{
+    else {
         catLabel.innerHTML = catTitle.value;
         console.log("updated categories to");
         console.log(String(catTitle.value));
     }
 }
-function back(){
-    hideElement("editFile");
-    showElement("fileUpload");
-}
 window.onload = function () {
     var x = 5;
-    for(var i=2;i<=7;i++){
+    for (var i = 2; i <= 7; i++) {
         var labelId = document.getElementById(String(i))
         labelId.setAttribute("onchange", `updateCategories(${i})`);
     }
@@ -147,6 +159,7 @@ window.onload = function () {
         x.style.display = "table";
     }
     document.getElementById("1").onchange = function () {
+        saved = false;
         console.log(this.value);
         if (this.value) {
             document.getElementById("editingTitle").innerHTML = "Editing \"" + String(this.value) + "\"";
@@ -156,11 +169,18 @@ window.onload = function () {
             document.getElementById("editingTitle").innerHTML = "Editing <i>\"" + "Unnamed" + "\"</i>";
         }
     };
-    document.getElementById("timerAll").onchange = function(){
-        for (var cat = 1; cat <= 6; cat++){
-            for (var val = 1; val <= 5; val++){
+    /*document.getElementById("timerAll").onchange = function () {
+        for (var cat = 1; cat <= 6; cat++) {
+            for (var val = 1; val <= 5; val++) {
                 document.getElementById("timer" + String(cat) + String(val)).value = document.getElementById("timerAll").value;
             }
         }
-    };
+        document.getElementById("timerAll").value = "";
+    };*/
 }
+window.onbeforeunload = function(){
+    if(!saved){
+        return true;
+        return "hello there man:-)";
+    }
+};
