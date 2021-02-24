@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Jeopardy!</title>
+	<script src='scripts/game.js'></script>
+    <link rel="preload" as="font" href="fonts/gyparody/gyparody hv.ttf" type="font/ttf" crossorigin="anonymous">
+    <link rel="preload" as="font" href="fonts/korinna-bt/korinan.ttf" type="font/ttf" crossorigin="anonymous">
+    <link rel="preload" as="font" href="fonts/Helvetica-Font/helvetica-compressed-5871d14b6903a.otf" type="font/otf" crossorigin="anonymous">
+
+
+	<link rel="stylesheet" href="styles/theme.css">
+	<style>
+		.center {
+			margin-left: auto;
+			margin-right: auto;
+            text-align: center;
+		}
+
+		iframe {
+			border-style: solid;
+			border-color: #000000;
+			border-width: 1vmin;
+			width: 50vmin;
+			height: 95vmin;
+		}
+
+		#fileSelect {
+			width: calc(100vw - margin-left);
+		}
+
+		#teamSelect {
+			width: calc(100vw - margin-left);
+		}
+
+		* {
+			outline-style: solid;
+			outline-color: #000000;
+			outline-width: 1px;
+		}
+
+		#game {
+			font-size: inherit;
+			left: 0px;
+            margin: 0px;
+            height: 60vw;
+		}
+
+		#gameTable {
+			width: 80%;
+			height: 50%;
+			font-size: inherit;
+			table-layout: fixed;
+
+		}
+
+		th {
+			font-size: 1.6vw;
+			border-style: solid;
+			border-color: #000000;
+			border-width: 1vw 1vw 1.5vw 1vw;
+            height: 5vw;
+		}
+
+		td button {
+			font-size: 4vw;
+			font-family: "Helvetica-Bold";
+			border: none;
+			background-color: rgb(0,0,0,0);
+			color: #d7a04b;
+			text-shadow: 0.1em 0.1em 0 #000000;
+			text-align: center;
+            text-align: -webkit-center;
+			font-weight: bolder;
+            padding: 0px;
+            vertical-align: middle;
+            position: relative;
+            top: 0px;
+		}
+
+		body {
+			overflow-x: hidden;
+		}
+
+		button.center {
+			outline-style: solid;
+			outline-color: #000000;
+			outline-width: 1px;
+			width: 100%;
+			height: 100%;
+			margin: auto;
+			text-align: center;
+			align-items: center;
+		}
+
+		td {
+            border: 1vw solid black;
+			position: relative;
+            padding: 0px;
+		}
+        .question{
+            font-family: korinna;
+            font-size: 5vw;
+            font-weight: 2vw;
+            text-align: center;
+            text-align: -webkit-center;
+            text-shadow: 1em 1em #000000;
+            text-color: #ffffff;
+        }
+        #test{
+            height: auto;
+            width: auto;
+        }
+	</style>
+</head>
+
+<body>
+	<div id="fileSelect" style="display: none">
+		<label for="file">Select a Jeopardy game file</label>
+        <br><br>
+        <input type="file" accept=".txt" name="file" id="file">
+        <br><br>
+        <a href="editor"><button type="button">Game Editor</button></a>
+    </div>
+    <h1 id="gameTitle" class="title"></h1>
+    <div id="teamSelect" style="display: none">
+        <h2>Select the number of participants and add their name</h2>
+        <form id="players"></form>
+        <button type="button" id="addPlayer">Add Participant</button>
+        <button type="button" id="startGame" onkeypress='console.log("key pressed")'>Start</button>
+    </div>
+    <div id="game" style="display: none">
+        <table id="gameTable" class="center" display="none">
+            <tr>
+                <th id="category1"></th>
+                <th id="category2"></th>
+                <th id="category3"></th>
+                <th id="category4"></th>
+                <th id="category5"></th>
+                <th id="category6"></th>
+            </tr>
+            <tr class="row1">
+                <td><button type="button" class="center" onclick="question(11)">$100</button></td>
+                <td><button type="button" class="center" onclick="question(21)">$100</button></td>
+                <td><button type="button" class="center" onclick="question(31)">$100</button></td>
+                <td><button type="button" class="center" onclick="question(41)">$100</button></td>
+                <td><button type="button" class="center" onclick="question(51)">$100</button></td>
+                <td><button type="button" class="center" onclick="question(61)">$100</button></td>
+            </tr>
+            <tr class="row1">
+                <td><button type="button" class="center" onclick="question(12)">$200</button></td>
+                <td><button type="button" class="center" onclick="question(22)">$200</button></td>
+                <td><button type="button" class="center" onclick="question(32)">$200</button></td>
+                <td><button type="button" class="center" onclick="question(42)">$200</button></td>
+                <td><button type="button" class="center" onclick="question(52)">$200</button></td>
+                <td><button type="button" class="center" onclick="question(62)">$200</button></td>
+            </tr>
+            <tr class="row1">
+                <td><button type="button" class="center" onclick="question(13)">$300</button></td>
+                <td><button type="button" class="center" onclick="question(23)">$300</button></td>
+                <td><button type="button" class="center" onclick="question(33)">$300</button></td>
+                <td><button type="button" class="center" onclick="question(43)">$300</button></td>
+                <td><button type="button" class="center" onclick="question(53)">$300</button></td>
+                <td><button type="button" class="center" onclick="question(63)">$300</button></td>
+            </tr>
+            <tr class="row1">
+                <td><button type="button" class="center" onclick="question(14)">$400</button></td>
+                <td><button type="button" class="center" onclick="question(24)">$400</button></td>
+                <td><button type="button" class="center" onclick="question(34)">$400</button></td>
+                <td><button type="button" class="center" onclick="question(44)">$400</button></td>
+                <td><button type="button" class="center" onclick="question(54)">$400</button></td>
+                <td><button type="button" class="center" onclick="question(64)">$400</button></td>
+            </tr>
+            <tr class="row1">
+                <td><button type="button" class="center" onclick="question(15)">$500</button></td>
+                <td><button type="button" class="center" onclick="question(25)">$500</button></td>
+                <td><button type="button" class="center" onclick="question(35)">$500</button></td>
+                <td><button type="button" class="center" onclick="question(45)">$500</button></td>
+                <td><button type="button" class="center" onclick="question(55)">$500</button></td>
+                <td><button type="button" class="center" onclick="question(65)">$500</button></td>
+            </tr>
+        </table>
+    </div>
+    <div id="q" class="center" style="display: none;">
+        <p id="qText" class="QA">question</p>
+        <!--<p id="timer" class="thicc"></p>-->
+        <button type="button" onclick="answer()">See Answer</button>
+    </div>
+    <div id="a" class="question center" style="display: none;">
+        <p class="thicc" id="points"></p>
+        <p id="aText" class="QA">answer</p>
+        <button type="button" onclick="backToQuestion()">Back to question</button>
+        <br>
+        <button type="button" onclick="done()">Done</button>
+    </div>
+    <!--<div id="scoreboard" style="display: none">
+		<iframe src="../scoreboard/index2.html" height="" width="" id="scoreView"></iframe>
+		<div id="scoreButtons">
+			<button id="showScore">Show Scoreboard</button>
+	        <button id="popScore">Pop Out Scoreboard</button>
+	    </div>
+	</div>
+    <p id="console">hello</p>-->
+</body>
+	
+</html>

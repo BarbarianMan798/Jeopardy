@@ -1,0 +1,63 @@
+table, tr, th, td{
+    border: 0.25vw solid black;
+    border-collapse: collapse;
+    font-family:"Helvetica-Bold";
+    font-weight: 500;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+}
+table, th{
+    text-shadow: 0.1em 0.1em 0 #000000;
+}
+button:hover, input[type="file"]:hover{
+    cursor: pointer;
+}
+a:hover{
+    text-decoration-line: none;
+}
+.thicc{
+    font-family:"Helvetica-Bold";
+    border: none;
+    background-color: #010a78;
+    color: #d7a04b;
+    text-shadow: 0.13em 0.13em 0 #000000;
+    text-align: center;
+    font-weight: bolder;
+}
+@font-face{
+    font-family: "korinna";
+    src: url("../fonts/korinna-bt/korinan.ttf");
+}
+@font-face{
+    font-family: "gyparody";
+    src: url("../fonts/gyparody/gyparody hv.ttf");
+}
+@font-face{
+    font-family: "Helvetica-Bold";
+    src: url("../fonts/Helvetica-Font/helvetica-compressed-5871d14b6903a.otf");
+}
+body{
+    background-color: #010a78;
+    color: #d7a04b;
+}
+.title{
+    text-align: center;
+    text-shadow: 0.13em 0.13em 0 #000000;
+    font-weight: 900;
+    font-family: 'gyparody';
+    font-size: 4vw;
+}
+.text{
+    font-family:"Helvetica-Bold";
+    font-weight: 900;
+    text-shadow: 0.1em 0.1em 0 #000000;
+}
+.QA{
+    font-family: korinna;
+    color: #ffffff;
+    text-shadow: 0.1em 0.1em 0 #000000;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 25px;
+}
