@@ -2,7 +2,7 @@
 <html lang="eng">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>I changed the title!</title>
+	<title>Jeopardy!</title>
 	<script src='scripts/game.js'></script>
     <link rel="preload" as="font" href="fonts/gyparody/gyparody hv.ttf" type="font/ttf" crossorigin="anonymous">
     <link rel="preload" as="font" href="fonts/korinna-bt/korinan.ttf" type="font/ttf" crossorigin="anonymous">
@@ -11,6 +11,11 @@
 
 	<link rel="stylesheet" href="styles/theme.css">
 	<style>
+        button, a{
+            font-size: 2vw;
+            margin: auto;
+            display: block;
+        }
 		.center {
 			margin-left: auto;
 			margin-right: auto;
@@ -33,11 +38,11 @@
 			width: calc(100vw - margin-left);
 		}
 
-		* {
+		/** {
 			outline-style: solid;
 			outline-color: #000000;
 			outline-width: 1px;
-		}
+		}*/
 
 		#game {
 			font-size: inherit;
@@ -100,11 +105,11 @@
 		}
         .question{
             font-family: korinna;
-            font-size: 5vw;
+            font-size: 2vw;
             font-weight: 400;
             text-align: center;
             text-align: -webkit-center;
-            text-shadow: 1em 1em #000000;
+            text-shadow: 0.1em 0.1em #000000;
             color: #ffffff;
         }
         #test{
@@ -116,21 +121,24 @@
 
 <body>
 	<div id="fileSelect" style="display: none">
-		<label for="file">Select a Jeopardy game file</label>
+		<!--<h2 class="title" style="font-size: 3.5vw">Welcome to</h2>-->
+        <h1 class="title" style="font-size: 4vw">Jeopardy!</h1>
         <br><br>
-        <input type="file" accept=".txt" name="file" id="file">
+        <button type="button" class="thicc" onclick='document.getElementById("file").click()'>Upload a file</button>
+        <input type="file" accept=".jpd" name="file" id="file" style="display: none">
         <br><br>
-        <a href="editor"><button type="button">Game Editor</button></a>
+        <button type="button" onclick="location.href = 'editor'" class="thicc" style="text-decoration-line: none">Game Editor</button>
     </div>
     <h1 id="gameTitle" class="title"></h1>
     <div id="teamSelect" style="display: none">
-        <h2>Select the number of participants and add their name</h2>
+        <h2 class="question">Select the number of participants and add their name</h2>
         <form id="players"></form>
-        <button type="button" id="addPlayer">Add Participant</button>
-        <button type="button" id="startGame" onkeypress='console.log("key pressed")'>Start</button>
+        <button type="button" id="addPlayer" class="thicc">Add Participant</button>
+        <br>
+        <button type="button" id="startGame" onkeypress='console.log("key pressed")' class="thicc">Start</button>
     </div>
     <div id="game" style="display: none">
-        <table id="gameTable" class="center" display="none">
+        <table id="gameTable" class="center">
             <tr>
                 <th id="category1"></th>
                 <th id="category2"></th>
@@ -184,14 +192,14 @@
     <div id="q" class="center" style="display: none;">
         <p id="qText" class="QA">question</p>
         <!--<p id="timer" class="thicc"></p>-->
-        <button type="button" onclick="answer()">See Answer</button>
+        <button type="button" onclick="answer()" class="thicc">See Answer</button>
     </div>
     <div id="a" class="question center" style="display: none;">
         <p class="thicc" id="points"></p>
         <p id="aText" class="QA">answer</p>
-        <button type="button" onclick="backToQuestion()">Back to question</button>
+        <button type="button" onclick="backToQuestion()" class="thicc">Back to question</button>
         <br>
-        <button type="button" onclick="done()">Done</button>
+        <button type="button" onclick="done()" class="thicc">Done</button>
     </div>
     <!--<div id="scoreboard" style="display: none">
 		<iframe src="../scoreboard/index2.html" height="" width="" id="scoreView"></iframe>

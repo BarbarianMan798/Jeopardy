@@ -96,7 +96,7 @@ function downloadFile() {
         newLines[i - 1] = document.getElementById(String(i)).value;
     }
     window.URL = window.URL || window.webkitURL;
-    var fileName = String(newLines[0]);
+    var fileName = String(newLines[0]) + ".jpd";
     var fileText = String(newLines[0]);
     for (var i = 1; i < newLines.length; i++) {
         fileText = fileText + "\n" + newLines[i].replace(/\n/g, "|||");
@@ -107,7 +107,7 @@ function downloadFile() {
         }
     }*/
     console.log(fileText);
-    var gameFile = new Blob([fileText], { type: "text/plain" });
+    var gameFile = new Blob([fileText], { type: "text/plain;charset=utf-8" });
     console.log(gameFile);
     var fileLink = document.createElement("a");
     console.log(fileLink);

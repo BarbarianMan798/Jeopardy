@@ -3,7 +3,7 @@ var scoreTable;
 var teams = [];
 var oldTeams = [];
 var oldState;
-scores = [];
+var scores = [];
 var addButton = document.getElementById("addPoints");
 var subtractButton = document.getElementById("subtractPoints");
 cookies.recieve = function (name) {
@@ -36,32 +36,56 @@ window.onload = function () {
 };
 var updateScore = setInterval(function () {
     if (cookies.recieve("start")) {
-        if(!cookies.recieve("question")){
-            document.getElementById
-        }
         teams = cookies.recieve("teams");
         let equals = true;
         teams.forEach(function(value, index, array){
             if(value != oldTeams[index])equals = false;
         });
         if (!equals) {
-            console.log("Teams Updated from " + String(oldTeams) + " to " + String(teams));
+            scores = [];
             document.getElementById("scoreTable").innerHTML = "";
             teams.forEach(function (value, index, array) {
+                scores[index] = 0;
                 let row = document.createElement("tr");
                 let teamName = document.createElement("td");
                 teamName.innerHTML = String(value);
                 let teamScore = document.createElement("td");
                 teamScore.innerHTML = String(scores[index]);
+                teamScore.id = "score" + String(index);
+                let scoreButtons = document.createElement("td");
+                let addScoreButton = document.createElement("button");
+                addScoreButton.className = "thicc";
+                addScoreButton.type = "button";
+                let subtractScoreButton = addScoreButton.cloneNode();
+                addScoreButton.id = "add" + String(index);
+                addScoreButton.innerHTML = "+";
+                addScoreButton.onclick = function(){
+                    let team = Number(this.id.charAt(this.id.length - 1));
+                    scores[team] += 100;
+                    document.getElementById("score" + String(team)).innerHTML = scores[team];
+                };
+                addScoreButton.style = "font-size: 3vw";
+                subtractScoreButton.id = "subtract" + String(index);
+                subtractScoreButton.innerHTML = "-";
+                subtractScoreButton.onclick = function(){
+                    let team = Number(this.id.charAt(this.id.length - 1));
+                    scores[team] -= 100;
+                    document.getElementById("score" + String(team)).innerHTML = scores[team];
+                };
+                subtractScoreButton.style = "font-size: 3vw";
+                scoreButtons.appendChild(addScoreButton);
+                scoreButtons.appendChild(subtractScoreButton);
+                scoreButtons.style = "font-size: 0px";
                 row.appendChild(teamName);
                 row.appendChild(teamScore);
+                row.appendChild(scoreButtons);
                 document.getElementById("scoreTable").appendChild(row);
             });
         }
         oldTeams = teams;
     }
     else if (oldState != cookies.recieve("start") && !cookies.recieve("start")) {
-        document.getElementById("scoreTable").innerHTML = 'Start a Jeopardy! game at <a class="link" href="http://jaredrobinson.epizy.com" target="_blank" rel="noopener noreferrer">jaredrobinson.epizy.com</a>';
+        document.getElementById("scoreTable").innerHTML = 'Start a Jeopardy game at <a class="link" href="http://jaredrobinson.epizy.com" target="_blank" rel="noopener noreferrer">jaredrobinson.epizy.com</a>';
     }
     oldState = cookies.recieve("start");
 }, 100);

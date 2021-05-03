@@ -9,9 +9,24 @@
     <link rel="stylesheet" href="../styles/theme.css">
 
     <style>
-        .catLabel {
-            text-align: left;
+        button.thicc {
+            background-color: #01074d;
+            border-radius: 0.5vw;
+            border-style: solid;
+            border-color: #000000;
+            border-width: 0.1vw;
+            margin: 0 auto;
         }
+        .center{
+            display: block;
+            margin-left: auto;
+            margin-right:auto;
+            text-align: center;
+        }
+        /** {
+            outline-style: solid;
+            outline-color: #000000;
+        }*/
         h2, button.thicc, label[for="1"]{
             font-size: 2em;
         }
@@ -30,15 +45,15 @@
 
     <div id="fileUpload">
         <br>
-        <button class="animated thicc" type="button" id="newFile" onclick="editFile(true)">New File</button>
+        <button class="animated thicc center" type="button" id="newFile" onclick="editFile(true)">New File</button>
         <br><br>
-        <p class="QA"> OR</p>
+        <p class="thicc center" style="font-size: 2em;"> OR</p>
         <br>
-        <button type="button" class="thicc" onclick='document.getElementById("uploadFile").click()'>Upload a file</button>
+        <button type="button" class="thicc center" onclick='document.getElementById("uploadFile").click()'>Upload a file</button>
         <br><br>
         <input style="display: none" class="animated QA" type="file" accept=".txt" id="uploadFile">
         <br><br><br><br><br><br>
-        <button type="button" class="thicc" style="font-size: 1.6em" onclick='window.open("../")'>Back to Jeopardy</button>
+        <button type="button" class="thicc center" style="font-size: 1.6em" onclick='location.href = "../"'>Back to Jeopardy</button>
     </div>
 
     <div id="editFile" style="display: none">

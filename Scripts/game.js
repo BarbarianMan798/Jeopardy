@@ -13,6 +13,7 @@ var correctAnswer;
 var players = [];
 var scores = [];
 var cookies = new Object;
+//comment
 cookies.recieve = function(name){
     var cookie;
     document.cookie.split("; ");
@@ -25,10 +26,10 @@ cookies.recieve = function(name){
 }
 cookies.transmit = function (name, data) {
     console.log("sending " + String(data) + " as a cookie...");
-    data = data.join("|");
+    if(typeof data == 'object')data = data.join("|");
     document.cookie = String(name) + "=" + String(data);
 }
-cookies.transmit("start", ["false"]);
+cookies.transmit("start", "false");
 //console.log(document.cookie);
 var playersForm;
 /*function get(by, select, item) {
@@ -88,7 +89,6 @@ function question(question) {
     catNum = Number(String(question).charAt(0));
     valNum = Number(String(question).charAt(1));
     points = valNum * 100;
-    cookies.transmit("question", [points]);
     console.log(valNum);
     lineNumber = lines[(10 * (catNum - 1)) + (valNum * 2) + 5];
     document.getElementById("qText").innerHTML = lineNumber;
@@ -98,18 +98,13 @@ function question(question) {
 };
 function answer(answer) {
     hideElement("q");
-    console.log("click");
     hideElement("game");
     showElement("a");
     //catNum = Number(String(answer).charAt(0));
-    console.log(catNum);
     //valNum = Number(String(answer).charAt(1));
-    console.log(valNum);
     lineNumber = lines[(10 * (catNum - 1)) + (valNum * 2) + 6];
     document.getElementById("aText").innerHTML = lineNumber;
-    console.log(lineNumber);
     document.getElementById("points").innerHTML = "$" + String(points);
-    cookies.transmit("question", ["false"]);
 };
 function hideElement(ID) {
     console.log(document.getElementById("a"));
@@ -135,13 +130,13 @@ window.onload = function () {
     
     //document.getElementById("gameTable").setAttribute("height", String((window.innerWidth / 2) / 2));
     //document.getElementById("scoreView").setAttribute("height", String(screen.width / 2) * 0.8);
-    cookies.transmit("question", ["false"]);
+    cookies.transmit("question", "false");
     console.log("loaded");
     playersForm = document.getElementById("players");
     hideElement("a");
     hideElement("game");
     hideElement("q");
-    cookies.transmit("teams", []);
+    cookies.transmit("teams", "");
     document.getElementById('file').onchange = function () {
         hideElement("fileSelect");
         var file = this.files[0];
@@ -169,6 +164,7 @@ window.onload = function () {
             document.getElementById("gameTitle").innerHTML = lines[0];
         };
         reader.readAsText(file);
+        this.value = null;
     };
     document.getElementById("addPlayer").onclick = function () { console.log("click"); editPlayers(true); };
     function log(text) {
@@ -187,7 +183,7 @@ window.onload = function () {
         else{
             console.log("No players added");
         }
-        cookies.transmit("start",["true"]);
+        cookies.transmit("start", "true");
     };
     document.getElementById("fileSelect").style.display = "block";
 };
@@ -200,6 +196,8 @@ function editPlayers(add) {
             br = document.createElement("br");
             newPlayer.setAttribute("type", "text");
             newPlayer.setAttribute("placeholder", "Participant Name");
+            newPlayer.style.margin = "auto";
+            newPlayer.style.display = "block";
             playersForm.appendChild(newPlayer);
             playersForm.appendChild(br);
             break;
@@ -210,6 +208,6 @@ function editPlayers(add) {
 }
 window.onbeforeunload = closingCode;
 function closingCode(){
-    cookies.transmit("start", ["false"]);
+    cookies.transmit("start", "false");
     return null;
 }
