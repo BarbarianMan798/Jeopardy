@@ -27,15 +27,15 @@ a:hover{
 }
 @font-face{
     font-family: "korinna";
-    src: url("../fonts/korinna-bt/korinan.ttf");
+    src: url("../Fonts/korinna-bt/korinan.ttf");
 }
 @font-face{
     font-family: "gyparody";
-    src: url("../fonts/gyparody/gyparody hv.ttf");
+    src: url("../Fonts/gyparody/gyparody hv.ttf");
 }
 @font-face{
     font-family: "Helvetica-Bold";
-    src: url("../fonts/Helvetica-Font/helvetica-compressed-5871d14b6903a.otf");
+    src: url("../Fonts/Helvetica-Font/helvetica-compressed-5871d14b6903a.otf");
 }
 body{
     background-color: #010a78;
