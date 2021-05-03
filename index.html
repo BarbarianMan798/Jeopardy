@@ -120,6 +120,13 @@
 </head>
 
 <body>
+    <div id="scoreboard" style="display: block; position: absolute;">
+         <iframe src="./scoreboard/index.html" height="" width="" id="scoreView"></iframe>
+	 <div id="scoreButtons">
+	     <button id="toggleScore" class="thicc">Show Scoreboard</button>
+	     <button id="popScore" class="thicc">Pop Out Scoreboard</button>
+	 </div>
+    </div>
 	<div id="fileSelect" style="display: none">
 		<!--<h2 class="title" style="font-size: 3.5vw">Welcome to</h2>-->
         <h1 class="title" style="font-size: 4vw">Jeopardy!</h1>
@@ -201,13 +208,6 @@
         <br>
         <button type="button" onclick="done()" class="thicc">Done</button>
     </div>
-    <div id="scoreboard" style="display: block; position: absolute;">
-		<iframe src="./scoreboard/index.html" height="" width="" id="scoreView"></iframe>
-		<div id="scoreButtons">
-			<button id="toggleScore" class="thicc">Show Scoreboard</button>
-	        <button id="popScore" class="thicc">Pop Out Scoreboard</button>
-	    </div>
-	</div>
 </body>
 	
 </html>
