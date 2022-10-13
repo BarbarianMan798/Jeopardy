@@ -176,7 +176,7 @@ window.onload = function () {
         if(players.length){
             hideElement("teamSelect");
             showElement("game");
-            showElement("scoreButtons");
+            showElement("scoreboard");
             console.log(players);
             cookies.transmit("teams", players);
             console.log("cookies send function was called");
